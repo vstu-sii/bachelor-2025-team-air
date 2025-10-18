@@ -1,0 +1,30 @@
+name: PR Checks
+
+on:
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  pr-size:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    
+    - name: Check PR size
+      uses: gagoof/pr-size-checker@v1
+      with:
+        maxAdditions: 500
+        maxChanges: 50
+
+  require-tests:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check for test modifications
+      uses: dkershner6/modified-files-checker-action@v2
+      with:
+        filePattern: '**/test_*.py **/*.test.* **/*.spec.*'
+        checkModified: true
+        checkCreated: true
+        token: ${{ secrets.GITHUB_TOKEN }}
