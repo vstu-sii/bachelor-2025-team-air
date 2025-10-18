@@ -1,0 +1,22 @@
+# Инфраструктура системы рекрутинга
+
+## Архитектура
+
+Система построена на микросервисной архитектуре с использованием Docker:
+
+### Сервисы:
+- **Frontend**: React/Next.js приложение
+- **Backend**: FastAPI Python сервер
+- **Database**: PostgreSQL для хранения данных
+- **LLM Service**: idk mb olama
+- **Monitoring**: Prometheus, Grafana, Loki для observability
+
+## Запуск разработческого окружения
+
+```bash
+# Клонирование репозитория
+git clone https://github.com/vstu-sii/bachelor-2025-team-air
+cd sii
+
+# Запуск всех сервисов
+make dev
